@@ -1,0 +1,161 @@
+/* ====================== RESET & GLOBAL STYLES ====================== */
+* {
+  margin: 0;                              /* Remove all default margins */
+  padding: 0;                             /* Remove all default padding */
+  box-sizing: border-box;                 /* Width/height includes padding & border */
+  font-family: 'Segoe UI', sans-serif;    /* Modern, clean font everywhere */
+}
+
+/* ====================== FULL PAGE SETUP ====================== */
+body {
+  height: 100vh;                                      /* Take full screen height */
+  background: linear-gradient(135deg, #0f0c29, #302b63, #24243e); /* Deep cosmic gradient */
+  display: flex;                                      /* Enable perfect centering */
+  justify-content: center;                            /* Center horizontally */
+  align-items: center;                                /* Center vertically */
+  overflow: hidden;                                   /* Prevent any scrollbars */
+  padding: 10px;                                      /* Small safe margin on all sides */
+}
+
+/* ====================== MAIN CALCULATOR BOX (RESPONSIVE) ====================== */
+.calculator {
+  background: rgba(20, 20, 40, 0.95);                  /* Dark semi-transparent glass */
+  padding: 20px;                                      /* Comfortable inner spacing */
+  border-radius: 24px;                                /* Smooth rounded corners */
+  box-shadow: 0 0 50px rgba(0, 255, 255, 0.3);         /* Soft glowing cyan border */
+  backdrop-filter: blur(15px);                        /* Real frosted glass effect */
+  border: 1px solid rgba(0, 255, 255, 0.2);            /* Subtle glowing edge */
+
+  width: 100%;                                        /* Use available width */
+  max-width: 400px;                                   /* Laptop/Desktop: never wider than 400px (perfect size) */
+  min-width: 320px;                                   /* Never too narrow */
+  height: auto;                                       /* Height based on content */
+  min-height: 580px;                                  /* Ensure enough space for all buttons */
+  margin: 10px;                                       /* Safe gap from screen edges */
+}
+
+/* ====================== MOBILE OPTIMIZATION (Small Screens) ====================== */
+@media (max-width: 480px) {
+  .calculator {
+    padding: 22px;                                    /* Slightly more padding on mobile */
+    border-radius: 28px;                              /* Rounder corners for app-like feel */
+    margin: 8px;                                      /* Less margin, use more screen */
+    min-height: 92vh;                                 /* Take almost full height on phone */
+    max-width: none;                                  /* Remove width limit on mobile */
+    width: calc(100vw - 16px);                        /* Full width minus margin */
+  }
+
+  /* Make text bigger & easier to read on phone */
+  #result { font-size: 46px !important; }             /* Larger result */
+  
+  button {
+    padding: 18px !important;                         /* Bigger tap area */
+    font-size: 19px !important;                       /* Clear text */
+    min-height: 68px;                                 /* Consistent button height */
+  }
+  
+  .equal { font-size: 32px !important; }             /* Large equals sign */
+}
+
+/* ====================== DISPLAY AREA ====================== */
+.display {
+  margin-bottom: 16px;                                /* Space below display */
+  background: rgba(0, 0, 0, 0.5);                     /* Dark inner panel */
+  border-radius: 18px;                                /* Rounded corners */
+  padding: 14px;                                      /* Inner spacing */
+  border: 1px solid rgba(0, 255, 255, 0.2);            /* Glowing cyan border */
+}
+
+#history {
+  color: rgba(0, 255, 255, 0.8);                       /* Light cyan for previous expression */
+  font-size: 17px;                                    /* Readable size */
+  text-align: right;                                  /* Right-aligned like real calculators */
+  min-height: 28px;                                   /* Prevent layout jump */
+  padding: 0 8px;                                     /* Side spacing */
+}
+
+#result {
+  width: 100%;                                        /* Full width */
+  background: transparent;                            /* Clean look */
+  border: none;                                       /* No border */
+  color: white;                                       /* Bright white numbers */
+  font-size: 44px;                                    /* Large main display */
+  font-weight: 300;                                   /* Elegant light weight */
+  text-align: right;                                  /* Numbers aligned right */
+  outline: none;                                      /* Remove focus outline */
+  padding: 8px 4px;                                   /* Breathing room */
+}
+
+/* ====================== BUTTON GRID LAYOUT ====================== */
+.buttons {
+  display: grid;                                      /* Best for calculator layout */
+  grid-template-columns: repeat(4, 1fr);              /* 4 equal columns */
+  gap: 14px;                                          /* Space between buttons */
+  padding: 4px;                                       /* Small inner padding */
+}
+
+/* ====================== DEFAULT BUTTON STYLE ====================== */
+button {
+  padding: 16px;                                      /* Comfortable size */
+  font-size: 18px;                                    /* Clear readable text */
+  font-weight: bold;                                  /* Strong visibility */
+  border: none;                                       /* Clean modern look */
+  border-radius: 18px;                                /* Rounded buttons */
+  background: rgba(255, 255, 255, 0.1);                /* Subtle glass effect */
+  color: white;                                       /* White text */
+  cursor: pointer;                                    /* Hand cursor on hover */
+  transition: all 0.3s ease;                          /* Smooth hover/press */
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);           /* Depth shadow */
+  min-height: 64px;                                   /* Consistent height */
+}
+
+/* Hover: lift up slightly */
+button:hover {
+  background: rgba(255, 255, 255, 0.25);               /* Brighter glass */
+  transform: translateY(-3px);                        /* Lift effect */
+}
+
+/* Press: satisfying click feedback */
+button:active {
+  transform: scale(0.95);                             /* Button presses down */
+}
+
+/* ====================== FUNCTION BUTTONS (sin, cos, log, etc.) ====================== */
+.func {
+  background: rgba(0, 200, 255, 0.2);                  /* Cyan background */
+  color: #00ccff;                                     /* Bright cyan text */
+  font-size: 16px;                                    /* Slightly smaller labels */
+}
+
+.func:active {
+  background: #00ccff;                                /* Full cyan when pressed */
+  color: black;                                       /* High contrast text */
+}
+
+/* ====================== OPERATOR BUTTONS (+ − × ÷ %) ====================== */
+.operator {
+  background: rgba(255, 100, 100, 0.2);                /* Red tint */
+  color: #ff6b6b;                                     /* Red text */
+}
+
+/* ====================== SPECIAL BUTTONS (AC, DEL) ====================== */
+.special {
+  background: #333;                                   /* Dark gray */
+  color: #fff;                                        /* White text */
+}
+
+/* ====================== EQUALS BUTTON (Tall & Orange) ====================== */
+.equal {
+  background: linear-gradient(135deg, #ff8c00, #ff3c00); /* Orange-red gradient */
+  grid-row: span 2;                                   /* Takes 2 rows vertically */
+  font-size: 28px;                                    /* Large equals sign */
+}
+
+.equal:active {
+  background: linear-gradient(135deg, #ff9a1a, #ff5722); /* Brighter when pressed */
+}
+
+/* ====================== ZERO BUTTON (Wide) ====================== */
+.zero {
+  grid-column: span 2;                                /* Takes 2 columns horizontally */
+}
